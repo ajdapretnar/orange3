@@ -1529,8 +1529,8 @@ class OWHeatMap(widget.OWWidget):
 
     def send_report(self):
         self.report_items((
-            ("Columns:", "Clustering" if self.col_clustering else "No sorting"),
-            ("Rows:", "Clustering" if self.row_clustering else "No sorting"),
+            ("Columns", "Clustering" if self.col_clustering else "No sorting"),
+            ("Rows", "Clustering" if self.row_clustering else "No sorting"),
             ("Row annotation",
              self.annotation_index > 0 and
              self.annotation_vars[self.annotation_index])
