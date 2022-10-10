@@ -84,8 +84,6 @@ class OWDistances(OWWidget, ConcurrentWidgetMixin):
         dense_metric_sparse_data = Msg("{} requires dense data.")
         distances_memory_error = Msg("Not enough memory")
         distances_value_error = Msg("Problem in calculation:\n{}")
-        data_too_large_for_mahalanobis = Msg(
-            "Mahalanobis handles up to 1000 {}.")
 
     class Warning(OWWidget.Warning):
         ignoring_discrete = Msg("Ignoring categorical features")
@@ -183,23 +181,10 @@ class OWDistances(OWWidget, ConcurrentWidgetMixin):
                 data = distance.impute(data)
             return True
 
-        def _check_tractability():
-            if metric is distance.Mahalanobis:
-                if self.axis == 1:
-                    # when computing distances by columns, we want < 100 rows
-                    if len(data) > 1000:
-                        self.Error.data_too_large_for_mahalanobis("rows")
-                        return False
-                else:
-                    if len(data.domain.attributes) > 1000:
-                        self.Error.data_too_large_for_mahalanobis("columns")
-                        return False
-            return True
-
         self.clear_messages()
         if data is not None:
-            for check in (_check_sparse, _check_tractability,
-                          _fix_discrete, _fix_missing, _fix_nonbinary):
+            for check in (_check_sparse, _fix_discrete, _fix_missing,
+                          _fix_nonbinary):
                 if not check():
                     data = None
                     break
