@@ -156,6 +156,8 @@ util.py:
     false: false
     def `requirementsSatisfied`:
         'Invalid requirement specification: %s': false
+    A: null
+    B: null
     class `Registry`:
         def `__new__`:
             registry: false
@@ -1246,6 +1248,10 @@ data/io_util.py:
     guess_data_type: false
     sanitize_variable: false
     update_origin: false
+    isnatstr: null
+    array_strptime: null
+    parse_datetime: null
+    to_datetime: null
     class `Compression`:
         .gz: false
         .bz2: false
@@ -1285,6 +1291,29 @@ data/io_util.py:
         origin: false
     def `update_origin`:
         origin: false
+    nat: null
+    Nat: null
+    NaT: null
+    NAT: null
+    def `array_strptime`:
+        raise: null
+        coerce: null
+        M8[us]: null
+        np.ndarray[np.datetime64]: null
+        NaT: null
+        Invalid 'errors' argument {errors}: null
+        unsafe: null
+    def `parse_datetime`:
+        raise: null
+        coerce: null
+        M8[us]: null
+        np.ndarray[np.datetime64]: null
+        Cannot guess date/time format: null
+    def `to_datetime`:
+        raise: null
+        coerce: null
+        np.ndarray[np.datetime64]: null
+        M8[us]: null
 data/pandas_compat.py:
     table_from_frame: false
     table_to_frame: false
@@ -5898,10 +5927,10 @@ widgets/data/oweditdomain.py:
     nan: false
     def `as_float_or_nan`:
         unsafe: false
-    def `datetime_to_epoch`:
-        1970-01-01: false
-        UTC: false
-        1s: false
+    def `datetime64_to_epoch`:
+        M8[us]: null
+        M8[D]: null
+        1970-01-01: null
     class `ReparseTimeTransform`:
         def `transform`:
             coerce: false
@@ -12583,6 +12612,9 @@ widgets/utils/encodings.py:
     utf-16: false
     utf-32: false
     iso8859-1: false
+    cp1252: false
+    iso8859-2: false
+    cp1250: false
     shift_jis: false
     iso2022_jp: false
     gb18030: false
@@ -12605,13 +12637,10 @@ widgets/utils/encodings.py:
     Western Europe (ISO Latin 1): false
     iso8859-15: false
     Western Europe (ISO-8859-15): false
-    cp1252: false
     Western Europe (Windows-1252): false
     mac_roman: false
     Western Europe (Mac OS Roman): false
-    iso8859-2: false
     Central and Eastern Europe (ISO Latin 2): false
-    cp1250: false
     Central and Eastern Europe (Windows-1250): false
     mac_latin2: false
     Central and Eastern Europe (Mac Latin-2): false
